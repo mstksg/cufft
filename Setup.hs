@@ -281,7 +281,7 @@ libraryBuildInfo profile platform@(Platform arch os) ghcVersion = do
     , extraLibs      = extraLibs'
     , extraGHCiLibs  = extraGHCiLibs'
     , extraLibDirs   = extraLibDirs'
-    , options        = [(GHC, ghcOptions) | os /= Windows]
+    , options        = PerCompilerFlavor [o | os /= Windows, o <- ghcOptions] []
     , customFieldsBI = [c2hsExtraOptions]
     }
 
